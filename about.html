@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story | Keofi</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+  <style>
+    :root {
+      --gold: #c5a880;
+      --black: #0e0e0f;
+      --card-bg: #161718;
+      --text-gray: #a1a1a1;
+      --transition-smooth: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--black); color: #fff; font-family: 'DM Sans', sans-serif; line-height: 1.6; overflow-x: hidden; }
+
+    /* --- REVEAL ANIMATION CLASSES --- */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: var(--transition-smooth);
+    }
+
+    [data-reveal].active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- LAYOUT --- */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+    .section { padding-block: 120px; }
+
+    /* --- HERO --- */
+    .hero-about {
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 1px solid rgba(197, 168, 128, 0.1);
+    }
+
+    .hero-title {
+      font-family: 'Oswald';
+      font-size: clamp(40px, 8vw, 80px);
+      text-transform: uppercase;
+      letter-spacing: 10px;
+      color: var(--gold);
+    }
+
+    /* --- CONTENT SECTION --- */
+    .about-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-family: 'Oswald';
+      font-size: 40px;
+      margin-bottom: 25px;
+      color: #fff;
+    }
+
+    .about-text p {
+      color: var(--text-gray);
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    /* --- MINIMAL IMAGE BOX --- */
+    .image-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.5);
+      transition: 1.2s ease-in-out;
+    }
+
+    .image-container:hover img {
+      filter: grayscale(0);
+      transform: scale(1.05);
+    }
+
+    /* --- MINIMAL CARDS --- */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 100px;
+    }
+
+    .value-card {
+      padding: 40px;
+      background: var(--card-bg);
+      border-bottom: 2px solid transparent;
+      transition: var(--transition-smooth);
+    }
+
+    .value-card:hover {
+      border-color: var(--gold);
+      background: #1c1d1f;
+    }
+
+    .value-card h3 {
+      font-family: 'Oswald';
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: var(--gold);
+    }
+
+    .value-card p {
+      font-size: 14px;
+      color: var(--text-gray);
+    }
+
+    /* --- NAVIGATION OVERLAY (Minimal) --- */
+    .nav-simple {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 30px 50px;
+      display: flex;
+      justify-content: space-between;
+      z-index: 100;
+      background: linear-gradient(to bottom, var(--black), transparent);
+    }
+
+    .nav-simple a {
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Oswald';
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    @media (max-width: 850px) {
+      .about-main { grid-template-columns: 1fr; gap: 50px; }
+      .values-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav-simple">
+    <a href="index.html" style="color: var(--gold);">KEOFI.</a>
+    <div style="display: flex; gap: 30px;">
+      <a href="index.html">Home</a>
+      <a href="#about">Story</a>
+    </div>
+  </nav>
+
+  <header class="hero-about">
+    <h1 class="hero-title" data-reveal>Our Essence</h1>
+  </header>
+
+  <main class="container">
+    
+    <section class="section about-main" id="about">
+      <div class="image-container" data-reveal>
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800&h=1000&auto=format&fit=crop" alt="Coffee Craft">
+      </div>
+
+      <div class="about-text">
+        <h2 data-reveal style="transition-delay: 0.2s;">Beyond the Bean</h2>
+        <p data-reveal style="transition-delay: 0.3s;">
+          Founded in 2024, Keofi was born from a singular obsession: to strip away the noise and focus on the purity of the roast. We don't just serve coffee; we provide a moment of stillness in a chaotic world.
+        </p>
+        <p data-reveal style="transition-delay: 0.4s;">
+          Every batch is roasted in micro-lots, ensuring that the unique profile of the altitude and soil remains intact. From the mountains of Ethiopia to your cup.
+        </p>
+      </div>
+    </section>
+
+    <div class="values-grid">
+      
+      <div class="value-card" data-reveal style="transition-delay: 0.1s;">
+        <ion-icon name="flask-outline" style="font-size: 30px; margin-bottom: 20px; color: var(--gold);"></ion-icon>
+        <h3>Precision</h3>
+        <p>Measured to the milligram. Brewed to the second. Excellence is non-negotiable.</p>
+      </div>
+
+      <div class="value-card" data-reveal style="transition-delay: 0.2s;">
+        <ion-icon name="earth-outline" style="font-size: 30px; margin-bottom: 20px; color: var(--gold);"></ion-icon>
+        <h3>Direct Trade</h3>
+        <p>We work directly with farmers, ensuring they earn 40% above market rates.</p>
+      </div>
+
+      <div class="value-card" data-reveal style="transition-delay: 0.3s;">
+        <ion-icon name="infinite-outline" style="font-size: 30px; margin-bottom: 20px; color: var(--gold);"></ion-icon>
+        <h3>Minimalism</h3>
+        <p>Removing the unnecessary to highlight the extraordinary character of coffee.</p>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer style="padding: 100px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 100px;">
+    <p style="color: var(--gold); font-family: 'Oswald'; letter-spacing: 5px;">EST. 2024</p>
+  </footer>
+
+  <script>
+    // Reveal On Scroll Logic
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

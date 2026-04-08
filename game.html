@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee Catch Game ☕</title>
+
+<style>
+
+body{
+margin:0;
+background:#0b0e11;
+font-family:Arial;
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+h1{
+margin-top:10px;
+color:#c5a880;
+}
+
+#gameArea{
+position:relative;
+width:100%;
+height:85vh;
+overflow:hidden;
+}
+
+.player{
+position:absolute;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+font-size:60px;
+}
+
+.coffee{
+position:absolute;
+font-size:40px;
+animation:fall linear;
+}
+
+@keyframes fall{
+from{top:-50px;}
+to{top:100vh;}
+}
+
+#scoreBoard{
+position:absolute;
+top:10px;
+left:20px;
+font-size:20px;
+}
+
+#lifeBoard{
+position:absolute;
+top:10px;
+right:20px;
+font-size:20px;
+}
+
+#gameOver{
+display:none;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#151a20;
+padding:30px;
+border-radius:10px;
+}
+
+button{
+padding:12px 25px;
+border:none;
+background:#c5a880;
+color:black;
+font-weight:bold;
+cursor:pointer;
+border-radius:5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>☕ Catch The Coffee!</h1>
+
+<div id="gameArea">
+
+<div id="scoreBoard">Score: 0</div>
+<div id="lifeBoard">Lives: ❤️❤️❤️</div>
+
+<div id="player" class="player">🧺</div>
+
+<div id="gameOver">
+<h2>Game Over ☕</h2>
+<p id="finalScore"></p>
+<button onclick="location.reload()">Play Again</button>
+</div>
+
+</div>
+
+<script>
+
+const player=document.getElementById("player");
+const gameArea=document.getElementById("gameArea");
+const scoreBoard=document.getElementById("scoreBoard");
+const lifeBoard=document.getElementById("lifeBoard");
+const gameOver=document.getElementById("gameOver");
+const finalScore=document.getElementById("finalScore");
+
+let score=0;
+let lives=3;
+let playerX=window.innerWidth/2;
+
+document.addEventListener("mousemove",e=>{
+playerX=e.clientX;
+player.style.left=playerX+"px";
+});
+
+function spawnCoffee(){
+
+if(lives<=0) return;
+
+const coffee=document.createElement("div");
+coffee.classList.add("coffee");
+coffee.innerHTML="☕";
+
+coffee.style.left=Math.random()*window.innerWidth+"px";
+coffee.style.animationDuration=(Math.random()*2+3)+"s";
+
+gameArea.appendChild(coffee);
+
+let fall=setInterval(()=>{
+
+let coffeeRect=coffee.getBoundingClientRect();
+let playerRect=player.getBoundingClientRect();
+
+if(
+coffeeRect.bottom>=playerRect.top &&
+coffeeRect.left<playerRect.right &&
+coffeeRect.right>playerRect.left
+){
+score++;
+scoreBoard.innerText="Score: "+score;
+coffee.remove();
+clearInterval(fall);
+}
+
+if(coffeeRect.top>window.innerHeight){
+lives--;
+updateLives();
+coffee.remove();
+clearInterval(fall);
+}
+
+},20);
+
+}
+
+function updateLives(){
+
+lifeBoard.innerText="Lives: "+ "❤️".repeat(lives);
+
+if(lives<=0){
+endGame();
+}
+}
+
+function endGame(){
+gameOver.style.display="block";
+finalScore.innerText="Your Score: "+score;
+}
+
+setInterval(spawnCoffee,1000);
+
+</script>
+
+</body>
+</html>

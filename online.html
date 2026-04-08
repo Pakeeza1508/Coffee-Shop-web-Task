@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keofi | Order Online</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <style>
+    :root {
+      --gold: #c5a880;
+      --eerie-black-1: #161718;
+      --eerie-black-2: #0e0e0f;
+      --white: #ffffff;
+      --gray: #888888;
+      --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body { background: var(--eerie-black-2); color: var(--white); font-family: 'DM Sans', sans-serif; }
+
+    /* --- HERO --- */
+    .order-header {
+      padding: 80px 20px;
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=1600&auto=format&fit=crop');
+      background-size: cover; background-position: center;
+      text-align: center; border-bottom: 2px solid var(--gold);
+    }
+    .headline-1 { font-family: 'Oswald', sans-serif; font-size: 50px; text-transform: uppercase; letter-spacing: 5px; }
+
+    /* --- LAYOUT --- */
+    .order-container {
+      display: grid;
+      grid-template-columns: 220px 1fr 350px;
+      gap: 30px;
+      max-width: 1500px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* --- SIDEBAR NAV --- */
+    .category-nav { position: sticky; top: 40px; height: fit-content; background: var(--eerie-black-1); padding: 15px; border-radius: 12px; }
+    .cat-link {
+      display: flex; align-items: center; gap: 12px;
+      padding: 15px; color: var(--gray); text-decoration: none;
+      transition: var(--transition); border-radius: 8px;
+      font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 5px;
+    }
+    .cat-link:hover, .cat-link.active { color: var(--gold); background: rgba(197, 168, 128, 0.1); }
+
+    /* --- MENU CONTENT --- */
+    .menu-group { margin-bottom: 80px; }
+    .group-title { 
+      font-family: 'Oswald'; font-size: 32px; border-bottom: 1px dashed var(--gold); 
+      padding-bottom: 10px; margin-bottom: 30px; text-transform: uppercase; color: var(--gold);
+    }
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+    
+    .item-card {
+      background: var(--eerie-black-1); border-radius: 15px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05); transition: var(--transition);
+    }
+    .item-card:hover { transform: translateY(-8px); border-color: var(--gold); }
+    .item-img { width: 100%; height: 180px; object-fit: cover; }
+    .item-info { padding: 15px; }
+    .item-title { font-family: 'Oswald'; font-size: 18px; margin-bottom: 5px; }
+    .item-price { color: var(--gold); font-weight: bold; margin-bottom: 15px; display: block; }
+    
+    .add-btn {
+      width: 100%; padding: 10px; background: transparent; border: 1px solid var(--gold);
+      color: var(--gold); font-family: 'Oswald'; cursor: pointer; border-radius: 5px;
+    }
+    .add-btn:hover { background: var(--gold); color: #000; }
+
+    /* --- CART --- */
+    .cart-sidebar {
+      background: var(--eerie-black-1); padding: 30px; border-radius: 15px;
+      height: fit-content; position: sticky; top: 40px; border: 1px solid var(--gold);
+    }
+    .cart-item { display: flex; justify-content: space-between; padding-block: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+    @media (max-width: 1100px) {
+      .order-container { grid-template-columns: 1fr; }
+      .category-nav { display: flex; overflow-x: auto; position: relative; top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="order-header">
+  <h1 class="headline-1">Online Store</h1>
+  <p style="color: var(--gray);">Premium Coffee Delivered to Your Table</p>
+</header>
+
+<main class="order-container">
+  
+  <aside class="category-nav">
+    <a href="#coffee" class="cat-link"><ion-icon name="cafe-outline"></ion-icon> Coffee</a>
+    <a href="#non-coffee" class="cat-link"><ion-icon name="leaf-outline"></ion-icon> Non-Coffee</a>
+    <a href="#snacks" class="cat-link"><ion-icon name="fast-food-outline"></ion-icon> Snacks</a>
+    <a href="#beans" class="cat-link"><ion-icon name="cube-outline"></ion-icon> Whole Beans</a>
+  </aside>
+
+  <section class="menu-display">
+
+    <div class="menu-group" id="coffee">
+      <h2 class="group-title">Signature Coffee</h2>
+      <div class="menu-grid">
+        <div class="item-card">
+          <img src="https://images.unsplash.com/photo-1703087425230-29d150d11728?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="item-img">
+          <div class="item-info">
+            <h3 class="item-title">Spanish Latte</h3>
+            <span class="item-price">$6.50</span>
+            <button class="add-btn" onclick="addToCart('Spanish Latte', 6.50)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <img src="https://images.unsplash.com/photo-1661849649691-2c58ee2b5580?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="item-img">
+          <div class="item-info">
+            <h3 class="item-title">Classic Americano</h3>
+            <span class="item-price">$4.90</span>
+            <button class="add-btn" onclick="addToCart('Classic Americano', 4.90)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-group" id="non-coffee">
+      <h2 class="group-title">Non-Coffee / Teas</h2>
+      <div class="menu-grid">
+        <div class="item-card">
+          <img src="https://images.unsplash.com/photo-1609803740516-d6369dc845a4?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="item-img">
+          <div class="item-info">
+            <h3 class="item-title">Hibiscus Berry Tea</h3>
+            <span class="item-price">$5.50</span>
+            <button class="add-btn" onclick="addToCart('Hibiscus Berry', 5.50)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="item-card">
+          <img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="item-img">
+          <div class="item-info">
+            <h3 class="item-title">Velvet Hot Cocoa</h3>
+            <span class="item-price">$6.00</span>
+            <button class="add-btn" onclick="addToCart('Velvet Cocoa', 6.00)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-group" id="snacks">
+      <h2 class="group-title">Bakery & Snacks</h2>
+      <div class="menu-grid">
+        <div class="item-card">
+          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=400&h=300&fit=crop" class="item-img">
+          <div class="item-info">
+            <h3 class="item-title">Butter Croissant</h3>
+            <span class="item-price">$4.50</span>
+            <button class="add-btn" onclick="addToCart('Croissant', 4.50)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-group" id="beans">
+      <h2 class="group-title">Whole Beans</h2>
+      <div class="menu-grid">
+        <div class="item-card">
+          <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=400&h=300&fit=crop" class="item-img">
+          <div class="item-info">
+            <h3 class="item-title">Ethiopian Roast (250g)</h3>
+            <span class="item-price">$18.00</span>
+            <button class="add-btn" onclick="addToCart('Ethio Beans', 18.00)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <aside class="cart-sidebar">
+    <h3 style="font-family: 'Oswald'; border-bottom: 1px solid var(--gold); padding-bottom: 10px; margin-bottom: 20px;">Your Cart</h3>
+    <div id="cart-items-list">
+      <p style="color: var(--gray); text-align: center; font-size: 14px;">Nothing here yet!</p>
+    </div>
+    <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+        <span>Total Amount:</span>
+        <span id="total-price" style="color: var(--gold); font-weight: bold;">$0.00</span>
+      </div>
+      <button class="add-btn" style="background: var(--gold); color: #000; border: none; font-weight: bold;">ORDER NOW</button>
+    </div>
+  </aside>
+
+</main>
+
+<script>
+  let cart = [];
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    renderCart();
+  }
+  function renderCart() {
+    const list = document.getElementById('cart-items-list');
+    const totalDisplay = document.getElementById('total-price');
+    list.innerHTML = '';
+    let total = 0;
+    cart.forEach(item => {
+      total += item.price;
+      const el = document.createElement('div');
+      el.className = 'cart-item';
+      el.innerHTML = `<span>${item.name}</span> <span>$${item.price.toFixed(2)}</span>`;
+      list.appendChild(el);
+    });
+    totalDisplay.innerText = `$${total.toFixed(2)}`;
+  }
+</script>
+
+</body>
+</html>

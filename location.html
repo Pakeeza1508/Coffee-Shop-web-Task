@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Location & Directions | Keofi</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #6f4e37;
+      --bg-dark: #0b0e11;
+      --glass: rgba(255, 255, 255, 0.05);
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      padding: 60px 20px;
+    }
+
+    .header-area { text-align: center; margin-bottom: 40px; }
+    
+    .title { font-family: 'Oswald', sans-serif; font-size: 3rem; color: #c5a880; margin: 0; }
+
+    /* The Map Frame */
+    .map-wrapper {
+      width: 100%;
+      height: 450px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .info-card {
+      background: var(--glass);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .info-card h3 { color: #c5a880; margin-bottom: 10px; }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 40px;
+      color: #c5a880;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover { transform: translateX(-5px); }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-area">
+      <h1 class="title">Find Us</h1>
+      <p>Visit us at the heart of the city for the best coffee experience.</p>
+    </div>
+
+    <div class="map-wrapper">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.617540212063!2d-73.985428!3d40.748441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a145!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1647891234567!5m2!1sen!2sus" 
+        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Address</h3>
+        <p>55 Main Street, New York<br>NY 10001, USA</p>
+      </div>
+      <div class="info-card">
+        <h3>Parking</h3>
+        <p>Free underground parking<br>available for customers.</p>
+      </div>
+      <div class="info-card">
+        <h3>Public Transport</h3>
+        <p>2 mins walk from Central<br>Station (Exit B).</p>
+      </div>
+    </div>
+
+    <center><a href="index.html" class="back-btn">← Back to Homepage</a></center>
+  </div>
+
+</body>
+</html>

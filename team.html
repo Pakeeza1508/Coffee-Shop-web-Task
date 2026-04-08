@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Expert Team | Keofi Coffee House</title>
+
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merienda&family=Oswald:wght@300;400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #c5a880;
+      --dark-ebony: #0b0e11;
+      --card-bg: rgba(22, 26, 30, 0.7);
+      --glass-border: rgba(197, 168, 128, 0.15);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--dark-ebony);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 50%, #1a1e23 0%, #0b0e11 100%);
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .team-section {
+      padding: 120px 0 100px;
+      text-align: center;
+    }
+
+    .intro-container {
+      max-width: 700px;
+      margin: 0 auto 80px;
+    }
+
+    .section-subtitle {
+      color: var(--gold);
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 6px;
+      margin-bottom: 20px;
+      display: block;
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    .section-title {
+      font-family: 'Merienda', cursive;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 25px;
+      background: linear-gradient(to right, #fff, var(--gold), #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .section-description {
+      line-height: 1.8;
+      color: #aaa;
+      animation: fadeInUp 1.2s ease forwards;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+
+    .team-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      border-radius: 24px;
+      border: 1px solid var(--glass-border);
+      overflow: hidden;
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .team-card.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .team-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--gold);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .member-img-wrapper {
+      position: relative;
+      height: 420px;
+      overflow: hidden;
+    }
+
+    .member-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: 0.7s ease;
+    }
+
+    .team-card:hover .member-img-wrapper img {
+      filter: grayscale(0%);
+      transform: scale(1.05);
+    }
+
+    .member-bio-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to top, rgba(11, 14, 17, 0.9) 20%, transparent);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      opacity: 0;
+      transition: 0.4s ease;
+    }
+
+    .team-card:hover .member-bio-overlay { opacity: 1; }
+
+    .bio-text {
+      font-size: 0.95rem;
+      color: var(--gold);
+      font-style: italic;
+      transform: translateY(20px);
+      transition: 0.5s 0.1s ease;
+      margin-bottom: 60px;
+    }
+
+    .team-card:hover .bio-text { transform: translateY(0); }
+
+    .social-overlay {
+      position: absolute;
+      bottom: -60px;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: var(--gold);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .team-card:hover .social-overlay { bottom: 0; }
+
+    .social-overlay a {
+      color: var(--dark-ebony);
+      font-size: 20px;
+      transition: 0.3s;
+    }
+
+    .social-overlay a:hover { transform: scale(1.3); }
+
+    .member-info {
+      padding: 25px;
+      text-align: left;
+    }
+
+    .member-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .member-role {
+      color: var(--gold);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Fixed Button Centering */
+    .btn-wrap { 
+      margin-top: 60px; 
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<main>
+  <section class="team-section">
+    <div class="container">
+
+      <div class="intro-container">
+        <span class="section-subtitle" style="font-weight: 100; font-size: 17px;">Behind Every Bean</span>
+        <h2 class="section-title">The Artisans of Keofi</h2>
+        <p class="section-description" style="font-size: 15px;">
+          Our team isn't just made of employees; they are storytellers of flavor. From the precise roast to the final artistic pour, meet the dedicated experts who turn your daily caffeine ritual into a premium sensory experience.
+        </p>
+      </div>
+
+      <div class="team-grid">
+
+        <div class="team-card">
+          <div class="member-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1561316670-df60e2dc8a7b?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="James Wilson">
+            <div class="member-bio-overlay">
+              <p class="bio-text">"Believes that every espresso shot has a unique soul waiting to be woken."</p>
+            </div>
+            <div class="social-overlay">
+              <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+              <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">James Wilson</h3>
+            <p class="member-role">Head Barista</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="member-img-wrapper">
+            <img src="https://plus.unsplash.com/premium_photo-1661778091956-15dbe6e47442?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sophia Chen">
+            <div class="member-bio-overlay">
+              <p class="bio-text">"Mastered the science of heat and air to bring out hidden chocolate notes."</p>
+            </div>
+            <div class="social-overlay">
+              <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+              <a href="#"><ion-icon name="logo-linkedin"></ion-icon></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Sophia Chen</h3>
+            <p class="member-role">Master Roaster</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="member-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Marcus Thorne">
+            <div class="member-bio-overlay">
+              <p class="bio-text">"Designing the atmosphere of our house to feel exactly like your second home."</p>
+            </div>
+            <div class="social-overlay">
+              <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+              <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Marcus Thorne</h3>
+            <p class="member-role">Art Director</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="btn-wrap">
+        <a href="index.html" class="btn btn-secondary">Explore Our Journey</a>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+<script>
+  const revealCards = () => {
+    const cards = document.querySelectorAll('.team-card');
+    cards.forEach((card, index) => {
+      const cardTop = card.getBoundingClientRect().top;
+      if (cardTop < window.innerHeight - 50) {
+        setTimeout(() => {
+          card.classList.add('revealed');
+        }, index * 150);
+      }
+    });
+  };
+  window.addEventListener('scroll', revealCards);
+  window.addEventListener('load', revealCards);
+</script>
+
+</body>
+</html>
