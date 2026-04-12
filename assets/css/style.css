@@ -697,6 +697,108 @@ body.active { overflow: hidden; }
 }
 
 /*-----------------------------------*\
+  #TABLE ANIMATED
+\*-----------------------------------*/
+
+.table-section { background-color: var(--rich-black-fogra-29); }
+
+.table-container {
+  overflow-x: auto;
+  margin-block-start: 50px;
+  border-radius: 12px;
+  border: 1px solid var(--white_a10);
+}
+
+.animated-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--rich-black-fogra-39);
+  color: var(--white);
+  font-family: var(--ff-oswald);
+  text-align: left;
+}
+
+.animated-table th, 
+.animated-table td {
+  padding: 20px;
+  border-bottom: 1px solid var(--white_a10);
+  transition: var(--transition-1);
+}
+
+.animated-table th {
+  background-color: var(--white_a10);
+  color: var(--camel);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.drink-name { font-weight: var(--fw-500); color: var(--white); }
+
+/* Animation: Row Hover Effect */
+.animated-table tbody tr {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.animated-table tbody tr:hover {
+  background-color: var(--white_a10);
+  transform: scale(1.01);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.animated-table tbody tr:hover td {
+  color: var(--camel);
+}
+
+/*-----------------------------------*\
+  #BRAND SPOTLIGHT
+\*-----------------------------------*/
+
+.spotlight-card {
+  position: relative;
+  border-radius: var(--radius-5);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.spotlight-link {
+  position: relative;
+  display: block;
+}
+
+/* Dark overlay for better text readability */
+.spotlight-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to right, rgba(0,0,0,0.8), transparent);
+  transition: var(--transition-2);
+}
+
+.spotlight-content {
+  position: absolute;
+  top: 50%;
+  left: 40px;
+  transform: translateY(-50%);
+  z-index: 2;
+  pointer-events: none; /* Allows the link behind to remain clickable */
+}
+
+/* Hover Effects */
+.spotlight-card:hover .img-cover {
+  transform: scale(1.05); /* Uses your existing img-cover transition */
+}
+
+.spotlight-card:hover .spotlight-link::after {
+  background-color: rgba(0, 0, 0, 0.2); /* Lightens on hover */
+}
+
+.spotlight-card:hover .btn {
+  background-color: var(--white);
+  color: var(--camel);
+}
+
+/*-----------------------------------*\
   #VIDEO SECTION
 \*-----------------------------------*/
 
